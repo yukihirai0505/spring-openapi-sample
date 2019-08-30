@@ -1,18 +1,29 @@
 plugins {
-	id 'org.springframework.boot' version '2.1.7.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
-	id 'java'
+    id 'org.springframework.boot' version '2.1.7.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
+    id "org.openapi.generator" version "4.0.2"
 }
+
+apply from: "gradle/swagger.gradle"
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation("io.springfox:springfox-swagger2:${swagger_dependencies_version}") {
+        exclude module: "mapstruct"
+        exclude module: "swagger-annotations"
+        exclude module: "swagger-models"
+    }
+    implementation "org.openapitools:jackson-databind-nullable:0.1.0"
+    implementation "io.swagger:swagger-annotations:1.5.21"
+    implementation "io.swagger:swagger-models:1.5.21"
+    implementation "io.springfox:springfox-swagger-ui:${swagger_dependencies_version}"
 }

@@ -1,0 +1,35 @@
+apply plugin: "org.openapi.generator"
+
+// doc: https://github.com/OpenAPITools/openapi-generator/tree/master/modules/openapi-generator-gradle-plugin#openapigeneratehttps://github.com/OpenAPITools/openapi-generator/tree/master/modules/openapi-generator-gradle-plugin#openapigenerate
+openApiGenerate {
+    // The name of the generator which will handle codegen.
+    generatorName = "spring"
+    // The output target directory into which code will be generated.
+    outputDir = "$buildDir/openapi".toString()
+    // The Open API 2.0/3.x specification location.
+    inputSpec = "$rootDir/src/main/resources/swagger/api.yml".toString()
+    // Package for generated api classes.
+    apiPackage = "com.example.demo.api"
+    // Package for generated model classes.
+    modelPackage = "com.example.demo.api.model"
+    // Defines which API-related files should be generated. This allows you to create a subset of generated files (or none at all).
+    apiFilesConstrainedTo = [""]
+    // Defines which model-related files should be generated. This allows you to create a subset of generated files (or none at all).
+    modelFilesConstrainedTo = [""]
+    // Defines which supporting files should be generated. This allows you to create a subset of generated files (or none at all).
+    supportingFilesConstrainedTo = ["ApiUtil.java"]
+    // A map of options specific to a generator. To see the full list of generator-specified parameters, please refer to [generators docs](https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators.md)
+    configOptions = [delegatePattern: "true", title: "sample"]
+    // Whether or not we should validate the input spec before generation. Invalid specs result in an error.
+    validateSpec = true
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir file("${project.buildDir.path}/openapi/src/main/java")
+        }
+    }
+}
+
+compileJava.dependsOn("openApiGenerate")
