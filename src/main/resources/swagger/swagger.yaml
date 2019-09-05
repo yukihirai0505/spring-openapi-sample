@@ -1,0 +1,37 @@
+---
+swagger: "2.0"
+info:
+  description: "This is a sample."
+  version: "v1"
+  title: "Swagger Gradle Plugin Sample"
+  termsOfService: "http://www.example.com/termsOfService"
+  contact:
+    name: "Name"
+    url: "http://www.example.com"
+    email: "email@email.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:8081"
+basePath: "/api"
+tags:
+  - name: "Custom"
+schemes:
+  - "http"
+  - "https"
+paths:
+  /custom:
+    get:
+      tags:
+        - "Custom"
+      summary: ""
+      description: "the Custom API"
+      operationId: "getCustom"
+      produces:
+        - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "string"

@@ -8,6 +8,12 @@ $ ./gradlew bootRun
 
 Access -> http://localhost:8080/api/countries
 
+## Generate doc from Code
+
+```
+$ ./gradlew generateSwaggerDocumentation
+```
+
 ## Doc
 
 API Docs   -> http://localhost:8080/v2/api-docs
